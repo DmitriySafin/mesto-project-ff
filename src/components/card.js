@@ -1,11 +1,11 @@
-import { openCardImage } from "../index.js";
 // @todo: Темплейт карточки
 const cardTemplate = document.querySelector("#card-template").content;
 // @todo: Функция создания карточки
-export const createCard = (cardData, deleteCallback) => {
+export const createCard = (cardData, deleteCallback, openCardImage) => {
   const cardElement = cardTemplate
     .querySelector(".places__item")
     .cloneNode(true);
+
   cardElement.querySelector(".card__image").src = cardData.link;
   cardElement.querySelector(".card__image").alt = cardData.name;
   cardElement.querySelector(".card__title").textContent = cardData.name;
@@ -22,9 +22,8 @@ export const createCard = (cardData, deleteCallback) => {
 
 // // @todo: Функция удаления карточки
 export function deletCard(evt) {
-  const placeItem = document.querySelectorAll(".places__item");
   const delElem = evt.target.closest(".places__item");
-  delElem.remove(placeItem);
+  delElem.remove("places__item");
 }
 
 // Функция Лайка на крточку
