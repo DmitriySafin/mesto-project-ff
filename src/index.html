@@ -9,6 +9,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mesto</title>
   </head>
+  <style>
+    .popup__input_type_error {
+      border-bottom-color: red;
+      outline: 0;
+    }
+    .popup__error_visible {
+      color: red;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      height: 33px;
+      line-height: 15px;
+    }
+    .popup__button_disabled {
+      background: none;
+      border: 1px solid #000;
+      color: #000;
+      cursor: default;
+      opacity: 0.2;
+      padding-bottom: 17px;
+      padding-top: 13px;
+    }
+    .count__like {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      color: #000000;
+    }
+  </style>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
@@ -42,21 +73,31 @@
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <form class="popup__form" name="edit-profile">
+          <form class="popup__form" name="edit-profile" novalidate>
             <input
               type="text"
               name="name"
+              id="email-input"
               class="popup__input popup__input_type_name"
               placeholder="Имя"
+              minlength="2"
+              maxlength="40"
+              data-="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="email-input-error popup__input_type_error"></span>
             <input
               type="text"
               name="description"
+              id="description-input"
               class="popup__input popup__input_type_description"
               placeholder="Занятие"
+              minlength="2"
+              maxlength="200"
+              data-="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="popup__input-error description-input-error"></span>
             <button type="submit" class="button popup__button">
               Сохранить
             </button>
@@ -71,18 +112,25 @@
             <input
               type="text"
               name="place-name"
+              id="place-input"
               class="popup__input popup__input_type_card-name"
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              data-="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="place-input-error popup__input_type_error"></span>
             <input
               type="url"
               name="link"
+              id="link-input"
               class="popup__input popup__input_type_url"
               placeholder="Ссылка на картинку"
               required
             />
-            <button type="submit" class="button popup__button">
+            <span class="link-input-error popup__input_type_error"></span>
+            <button type="submit" class="button popup__button dd">
               Сохранить
             </button>
           </form>
@@ -106,6 +154,7 @@
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button type="button" class="card__like-button"></button>
+          <span class="count__like"></span>
         </div>
       </li>
     </template>
