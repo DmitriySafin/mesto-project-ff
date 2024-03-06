@@ -20,3 +20,18 @@
     margin-right: 0;
   }
 }
+.profile__overlay {
+  background-image: url("../../../images/edit-icon.svg");
+  background-repeat: no-repeat;
+  inline-size: inherit;
+  block-size: inherit;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  background-position: center;
+  background-size: 20% auto;
+  transition: 0.7s;
+}
+.profile__overlay:hover {
+  opacity: 100%;
+}

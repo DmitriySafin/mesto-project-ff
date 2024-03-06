@@ -1,6 +1,16 @@
 import { data } from "jquery";
 
-export { checkingError, getUser, getCards, editProfile, postCard };
+export {
+  checkingError,
+  getUser,
+  getCards,
+  editProfile,
+  postCard,
+  removeCardLike,
+  addCardLike,
+  deleteCard,
+  setUserAvatar,
+};
 const config = {
   baseUrl: "https://nomoreparties.co/v1/wff-cohort-7",
   headers: {
@@ -52,9 +62,35 @@ const postCard = (item) => {
   }).then(checkingError);
 };
 
-// const requestLikeCard = async (cardId, isLiked) => {
-//   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-//     method: isLiked ? "DELETE" : "PUT",
-//     headers: config.headers,
-//   }).then(checkingError);
-// };
+// Удаление карточки
+const deleteCard = (id) => {
+  return fetch(`${config.baseUrl}/cards/${id}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then(checkingError);
+};
+// Постановка лайка
+const addCardLike = (id) => {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: "PUT",
+    headers: config.headers,
+  }).then(checkingError);
+};
+
+// Снятие лайка
+const removeCardLike = (id) => {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then(checkingError);
+};
+
+// Обновление аватара пользователя
+
+const setUserAvatar = (avatar) => {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: "PATCH",
+    headers: config.headers,
+    body: JSON.stringify(avatar),
+  }).then(checkingError);
+};

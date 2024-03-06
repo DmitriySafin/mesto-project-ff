@@ -96,15 +96,3 @@ function clearValidation(formElement, validationConfig) {
     validationConfig
   );
 }
-
-// function validateFields(field1, field2) {
-//   const regex = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
-
-//   if (!regex.test(field1)) {
-//     return "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы";
-//   }
-
-//   if (!regex.test(field2)) {
-//     return "Ошибка в поле 2: используйте только латинские и кириллические буквы, знаки дефиса и пробелы.";
-//   }
-// }
