@@ -58,6 +58,7 @@ const popupImageText = document.querySelector(".popup__caption");
 const formAvatar = document.querySelector("[name='avatar']");
 const formAddCard = document.forms['new-place'];
 const popupCloseAddCard = document.querySelector('.popup__close');
+
 // Cлушатели на кнопки открытия popup
   buttonOpenPopup.forEach( buttonOpen =>{
     buttonOpen.addEventListener('click', (evt) =>{
@@ -149,7 +150,8 @@ function addnewCardPopup(evt) {
       placeList.prepend(cardElement);
       closePopup(newCardPopup);
       evt.target.reset();
-      popupCloseAddCard.disabled = false; // Делаем кнопку активной после очистки
+      clearValidation(formAddCard, validationConfig)
+      closePopup(newCardPopup)
     })
     .catch((error) => {
       console.error(error)
@@ -160,6 +162,7 @@ function addnewCardPopup(evt) {
 }
 
 newCardPopup.addEventListener("submit", addnewCardPopup);
+
 // Открыте popup с картинкой
 function openCardImage({ name, link }) {
   popupImage.src = link;
@@ -167,9 +170,6 @@ function openCardImage({ name, link }) {
   popupImageText.textContent = name;
   openPopup(popupCard);
 }
-
-// 7 спринт
-
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -185,7 +185,7 @@ enableValidation(validationConfig);
 window.addEventListener("load", () => {
   Promise.all([getUser(), getCards()])
     .then(([user, cards]) => {
-      function showCard(cardList) {
+      function showCards(cardList) {
         const myId = user._id;
         cardList.forEach((item) => {
           const cardElement = createCard(
@@ -201,7 +201,7 @@ window.addEventListener("load", () => {
         nameDecript.textContent = user.about;
         imageProfile.style.backgroundImage = `url(${user.avatar})`;
       }
-      showCard(cards);
+      showCards(cards);
     })
     .catch((error) => {
       console.error(error)

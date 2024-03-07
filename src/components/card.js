@@ -58,7 +58,7 @@ export const likeCard = (cardId, likeButton, likeCounter) => {
         likeButton.classList.remove("card__like-button_is-active");
         likeCounter.textContent = data.likes.length;
       })
-      .catch("Произошла ошибка");
+      .catch(console.error);
   } else {
     addCardLike(cardId)
       .then((data) => {
