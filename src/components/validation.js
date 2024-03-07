@@ -1,12 +1,16 @@
-export {
-  showInputError,
-  hideInputError,
-  checkInputValidity,
-  setEventListeners,
-  toggleButtonState,
-  hasInvalidInput,
-  clearValidation,
-};
+
+function enableValidation(validationConfig) {
+  const formList = Array.from(
+    document.querySelectorAll(validationConfig.formSelector)
+  );
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement, validationConfig);
+  });
+}
+
 // Показ сообщения ошибки
 function showInputError(
   formElement,
@@ -96,3 +100,14 @@ function clearValidation(formElement, validationConfig) {
     validationConfig
   );
 }
+
+export {
+  enableValidation,
+  showInputError,
+  hideInputError,
+  checkInputValidity,
+  setEventListeners,
+  toggleButtonState,
+  hasInvalidInput,
+  clearValidation,
+};

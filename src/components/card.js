@@ -14,10 +14,10 @@ export const createCard = (
   const cardElement = cardTemplate
     .querySelector(".places__item")
     .cloneNode(true);
-  cardElement.querySelector(".card__image").src = cardData.link;
-  cardElement.querySelector(".card__image").alt = cardData.name;
+    const cardImage = cardElement.querySelector(".card__image");
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
   cardElement.querySelector(".card__title").textContent = cardData.name;
-  const cardImage = cardElement.querySelector(".card__image");
   const deletBtn = cardElement.querySelector(".card__delete-button");
   const like = cardElement.querySelector(".card__like-button");
   like.addEventListener("click", () => {
@@ -28,8 +28,6 @@ export const createCard = (
   cardImage.addEventListener("click", openPopupImage);
   const likeButton = () => likeButtonClick(like);
   like.addEventListener("click", likeButton);
-  // console.log(cardData.owner._id);
-  // console.log(userId);
   if (cardData.owner._id === userId) {
     deletBtn.addEventListener("click", () => {
       deleteCard(cardId);
@@ -67,12 +65,6 @@ export const likeCard = (cardId, likeButton, likeCounter) => {
         likeButton.classList.add("card__like-button_is-active");
         likeCounter.textContent = data.likes.length;
       })
-      .catch("Произошла ошибка");
+      .catch(console.error);
   }
-};
-
-// Улучшенный UX всех форм
-
-export const showSave = (buttonSave) => {
-  buttonSave.textContent = "Сохранение...";
 };

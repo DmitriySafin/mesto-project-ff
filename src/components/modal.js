@@ -1,4 +1,4 @@
-export { openPopup, closePopup, closeOverlay, popups };
+
 const popups = Array.from(document.querySelectorAll(".popup"));
 // Открытие  popup с карточками
 function openPopup(popup) {
@@ -27,3 +27,5 @@ function closeEscape(evt) {
     closePopup(target);
   }
 }
+
+export { openPopup, closePopup, closeOverlay, popups };

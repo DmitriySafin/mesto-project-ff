@@ -1,16 +1,4 @@
 import { data } from "jquery";
-
-export {
-  checkingError,
-  getUser,
-  getCards,
-  editProfile,
-  postCard,
-  removeCardLike,
-  addCardLike,
-  deleteCard,
-  setUserAvatar,
-};
 const config = {
   baseUrl: "https://nomoreparties.co/v1/wff-cohort-7",
   headers: {
@@ -19,7 +7,7 @@ const config = {
   },
 };
 // Проверка на ошибки
-function checkingError(res) {
+function checkReponse(res) {
   if (res.ok) {
     return res.json();
   } else {
@@ -30,14 +18,14 @@ function checkingError(res) {
 const getUser = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 
 //   Загрузка карточек с сервера
 const getCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers,
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 
 // Редактирование профиля
@@ -46,7 +34,7 @@ const editProfile = (profile) => {
     method: "PATCH",
     headers: config.headers,
     body: JSON.stringify(profile),
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 
 // Добавление новой карточки
@@ -59,7 +47,7 @@ const postCard = (item) => {
       name: item.name,
       link: item.link,
     }),
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 
 // Удаление карточки
@@ -67,14 +55,14 @@ const deleteCard = (id) => {
   return fetch(`${config.baseUrl}/cards/${id}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 // Постановка лайка
 const addCardLike = (id) => {
   return fetch(`${config.baseUrl}/cards/likes/${id}`, {
     method: "PUT",
     headers: config.headers,
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 
 // Снятие лайка
@@ -82,7 +70,7 @@ const removeCardLike = (id) => {
   return fetch(`${config.baseUrl}/cards/likes/${id}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(checkingError);
+  }).then(checkReponse);
 };
 
 // Обновление аватара пользователя
@@ -92,5 +80,17 @@ const setUserAvatar = (avatar) => {
     method: "PATCH",
     headers: config.headers,
     body: JSON.stringify(avatar),
-  }).then(checkingError);
+  }).then(checkReponse);
+};
+
+export {
+  checkReponse,
+  getUser,
+  getCards,
+  editProfile,
+  postCard,
+  removeCardLike,
+  addCardLike,
+  deleteCard,
+  setUserAvatar,
 };
