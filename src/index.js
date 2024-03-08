@@ -46,7 +46,6 @@ const popupTypeEdit = document.querySelector(".popup_type_edit");
 const newCardPopup = document.querySelector(".popup_type_new-card");
 const addBtn = document.querySelector(".profile__add-button");
 const imageProfile = document.querySelector(".profile__image");
-const openButtons = document.querySelectorAll('button[type="button"]');
 const avatarPopup = document.querySelector(".popup_type_profile");
 const nameTitle = document.querySelector(".profile__title");
 const nameDecript = document.querySelector(".profile__description");
@@ -76,8 +75,8 @@ imageProfile.addEventListener("click", () => {
 }); 
 closeButtons.forEach((btn) => { 
   btn.addEventListener("click", (evt) => { 
-    const delPopup = evt.target.closest(".popup"); 
-    closePopup(delPopup); 
+    const popup = evt.target.closest(".popup"); 
+    closePopup(popup); 
 
   }); 
 }); 
