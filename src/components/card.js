@@ -23,6 +23,15 @@ export const createCard = (
   like.addEventListener("click", () => {
     likeCard(cardId, like, countLike);
   });
+
+  const renderLikes = (card) =>{
+    if (card.likes.some(card=>card._id === userId)) {
+      like.classList.add("card__like-button_is-active")
+    }
+  }
+renderLikes(cardData);
+
+
   deletBtn.addEventListener("click", deleteCallback);
   const openPopupImage = () => openCardImage(cardData);
   cardImage.addEventListener("click", openPopupImage);

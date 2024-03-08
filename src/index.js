@@ -22,6 +22,7 @@ import {
   addCardLike,
   deleteCard,
   setUserAvatar,
+  toggleLike
 } from "./components/api.js";
 import {
   enableValidation,
@@ -45,7 +46,7 @@ const popupTypeEdit = document.querySelector(".popup_type_edit");
 const newCardPopup = document.querySelector(".popup_type_new-card");
 const addBtn = document.querySelector(".profile__add-button");
 const imageProfile = document.querySelector(".profile__image");
-const buttonOpenPopup = document.querySelectorAll('button[type="button"]');
+const openButtons = document.querySelectorAll('button[type="button"]');
 const avatarPopup = document.querySelector(".popup_type_profile");
 const nameTitle = document.querySelector(".profile__title");
 const nameDecript = document.querySelector(".profile__description");
@@ -57,30 +58,29 @@ const popupInputProfile = document.querySelector(".popup__input_type_profile");
 const popupImageText = document.querySelector(".popup__caption");
 const formAvatar = document.querySelector("[name='avatar']");
 const formAddCard = document.forms['new-place'];
-const popupCloseAddCard = document.querySelector('.popup__close');
+const formEditCard = document.forms['edit-profile']
+const closeButtons = Array.from(document.querySelectorAll(".popup__close"));
 
-// Cлушатели на кнопки открытия popup
-  buttonOpenPopup.forEach( buttonOpen =>{
-    buttonOpen.addEventListener('click', (evt) =>{
-      if (evt.target === editBtn) {
-              openPopup(popupTypeEdit);
-                nameInput.value = nameTitle.textContent;
-  jobInput.value = nameDecript.textContent;
-  clearValidation(popupTypeEdit, validationConfig);
-            } else if (evt.target === addBtn) {
-              
-              openPopup(newCardPopup);
-            } 
-             else if (evt.target.classList.contains('popup__close')) {
-              const popup = evt.target.closest('.popup');
-              closePopup(popup);
-            }
-    })
-    })  
+// Cлушатели на кнопки открытия popup 
+editBtn.addEventListener("click", () => { 
+  nameInput.value = nameTitle.textContent; 
+  jobInput.value = nameDecript.textContent; 
+  clearValidation(formEditCard, validationConfig); 
+  openPopup(popupTypeEdit); 
+}); 
+addBtn.addEventListener("click", () => { 
+  openPopup(newCardPopup); 
+}); 
+imageProfile.addEventListener("click", () => { 
+  openPopup(avatarPopup); 
+}); 
+closeButtons.forEach((btn) => { 
+  btn.addEventListener("click", (evt) => { 
+    const delPopup = evt.target.closest(".popup"); 
+    closePopup(delPopup); 
 
-    imageProfile.addEventListener("click", () => {
-      openPopup(avatarPopup);
-    });
+  }); 
+}); 
 
 // Обработчик по Overlay
 popups.forEach((popup) => {
@@ -108,7 +108,7 @@ const handleFormEditSubmit = (evt) => {
       resetButton(evt.submitter)
     });
 };
-popupTypeEdit.addEventListener("submit", handleFormEditSubmit);
+formEditCard.addEventListener("submit", handleFormEditSubmit);
 
 // Обновление аватара пользователя
 const changeAvatar = (evt) => {
@@ -130,7 +130,7 @@ const changeAvatar = (evt) => {
 };
 formAvatar.addEventListener("submit", changeAvatar);
 // Функция Добавления новых  карточек
-function addnewCardPopup(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   showSave(evt.submitter);
   postCard({
@@ -151,7 +151,6 @@ function addnewCardPopup(evt) {
       closePopup(newCardPopup);
       evt.target.reset();
       clearValidation(formAddCard, validationConfig)
-      closePopup(newCardPopup)
     })
     .catch((error) => {
       console.error(error)
@@ -161,7 +160,7 @@ function addnewCardPopup(evt) {
     });
 }
 
-newCardPopup.addEventListener("submit", addnewCardPopup);
+formAddCard.addEventListener("submit", handleCardFormSubmit);
 
 // Открыте popup с картинкой
 function openCardImage({ name, link }) {

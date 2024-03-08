@@ -83,6 +83,14 @@ const setUserAvatar = (avatar) => {
   }).then(checkReponse);
 };
 
+//  const toggleLike = (element, isLiked) => {
+//   return fetch(`${config.baseUrl}/cards/likes/${element._id}`, {
+//     method: (isLiked === true) ? 'DELETE': 'PUT',
+//     headers: config.headers
+//   })
+//   .then(checkReponse)
+// };
+
 export {
   checkReponse,
   getUser,

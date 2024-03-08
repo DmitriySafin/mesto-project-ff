@@ -85,14 +85,8 @@ function clearValidation(formElement, validationConfig) {
   const inputList = Array.from(
     formElement.querySelectorAll(validationConfig.inputSelector)
   );
-  const errorList = Array.from(
-    formElement.querySelectorAll(validationConfig.errorSelector)
-  );
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, validationConfig);
-  });
-  errorList.forEach((errorElement) => {
-    hideInputError(errorElement);
   });
   toggleButtonState(
     inputList,
