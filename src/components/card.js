@@ -28,7 +28,7 @@ export const createCard = (
   const renderLikes = (card) =>{
     if (card.likes.some(card=>card._id === userId)) {
       like.classList.add("card__like-button_is-active")
-    }else like.classList.remove('card__like-button_is-active')
+    }
   }
   
 renderLikes(cardData);
