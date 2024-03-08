@@ -22,7 +22,6 @@ import {
   addCardLike,
   deleteCard,
   setUserAvatar,
-  toggleLike
 } from "./components/api.js";
 import {
   enableValidation,
@@ -193,7 +192,7 @@ window.addEventListener("load", () => {
             deletCard,
             openCardImage
           );
-          placeList.append(cardElement);
+          placeList.append(cardElement); 
         });
         nameTitle.textContent = user.name;
         nameDecript.textContent = user.about;

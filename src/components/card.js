@@ -1,6 +1,6 @@
 import { data } from "jquery";
 import { closePopup, openPopup } from "./modal";
-import { deleteCard, addCardLike, removeCardLike, toggleLike } from "./api";
+import { deleteCard, addCardLike, removeCardLike } from "./api";
 // @todo: Темплейт карточки
 const cardTemplate = document.querySelector("#card-template").content;
 // @todo: Функция создания карточки
