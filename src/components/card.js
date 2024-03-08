@@ -21,10 +21,10 @@ export const createCard = (
   const deletBtn = cardElement.querySelector(".card__delete-button");
 
   const like = cardElement.querySelector(".card__like-button");
-  // like.addEventListener("click", () => {
-  //   likeCard(cardId, like, countLike);
-  // });
-
+  like.addEventListener("click", () => { 
+    likeCard(cardId, like, countLike); 
+  });  
+  
   const renderLikes = (card) =>{
     if (card.likes.some(card=>card._id === userId)) {
       like.classList.add("card__like-button_is-active")
@@ -32,14 +32,6 @@ export const createCard = (
   }
   
 renderLikes(cardData);
-like.addEventListener('click', ()=>{
-  likeCard(cardId, like, countLike);
-  toggleLike(cardData, like.classList.contains('card__like-button_is-active')).then(data =>{
-    renderLikes(data);
-  })
-  .catch(console.error)
-})
-
 
   const openPopupImage = () => openCardImage(cardData);
   cardImage.addEventListener("click", openPopupImage);
