@@ -4,4 +4,4 @@
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 <h3 align="center">I am student at Yandex.Praktikum from Russia 🇷🇺</h3>
 Проект "Оно тебе надо"
-ссылка на github:  <a href="https://github.com/DmitriySafin/zakrivayuschiy-teg-f.git" target="_blank">git@github.com:DmitriySafin/zakrivayuschiy-teg-f.git</a> 
+ссылка на githubPages:  <a href="https://github.com/DmitriySafin/mesto-project-ff.git" target="_blank">https://github.com/DmitriySafin/mesto-project-ff.git</a> 
